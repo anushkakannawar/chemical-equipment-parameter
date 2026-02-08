@@ -15,7 +15,22 @@ const Register = ({ onRegisterSuccess, onCancel }) => {
             onRegisterSuccess();
         } catch (error) {
             console.error('Registration error:', error);
-            message.error('Registration failed. Username may already exist.');
+
+            let errorMsg = 'Registration failed. Please try again.';
+
+            // Handle Django Rest Framework error format: { field: [error1, error2] }
+            if (error.response && error.response.data) {
+                const data = error.response.data;
+                const firstKey = Object.keys(data)[0];
+                if (firstKey && Array.isArray(data[firstKey])) {
+                    errorMsg = data[firstKey][0];
+                } else if (typeof data === 'object') {
+                    // Fallback for other structures
+                    errorMsg = Object.values(data)[0];
+                }
+            }
+
+            message.error(errorMsg);
         } finally {
             setLoading(false);
         }
