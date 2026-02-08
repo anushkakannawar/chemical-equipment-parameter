@@ -1,16 +1,59 @@
-# React + Vite
+# Chemical Equipment Visualizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hybrid Web Application and Desktop Application for analyzing equipment parameters.
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Backend
+Open terminal in `backend` folder.
 
-## React Compiler
+1.  **Initialize environment:**
+    ```bash
+    python -m venv venv
+    venv\Scripts\activate
+    pip install django djangorestframework django-cors-headers pandas matplotlib
+    ```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2.  **Run migrations and server:**
+    ```bash
+    python manage.py migrate
+    python manage.py runserver
+    ```
+    The API will be available at http://127.0.0.1:8000/.
 
-## Expanding the ESLint configuration
+### Frontend
+Open new terminal in the project root folder.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+2.  **Start dev server:**
+    ```bash
+    npm run dev
+    ```
+    The web dashboard uses React and Vite.
+
+### Desktop App
+**Setup & Run**
+Ensure the Django backend is running in another terminal.
+
+1.  **Run the desktop app using the helper script:**
+    ```cmd
+    ./run_desktop_app.bat
+    ```
+
+2.  **Or manually:**
+    ```bash
+    pip install -r desktop_app/requirements.txt
+    python desktop_app/main.py
+    ```
+
+## Features
+
+-   **Upload:** Support for CSV dataset uploads.
+-   **Analytics:** Automated calculation of parameter averages for Flowrate, Pressure, and Temperature.
+-   **Visuals:** Equipment Type Distribution (Pie Chart) and Parameter Averages (Bar Chart).
+-   **History:** Tracks and displays the last 5 dataset uploads with unique IDs and timestamps.
+-   **Report:** Capability to download summarized reports of the processed data.
