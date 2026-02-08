@@ -126,7 +126,29 @@ const Charts = ({ summary }) => {
                     font: {
                         family: "'Inter', sans-serif",
                     },
-                    color: '#64748B'
+                    color: '#64748B',
+                    generateLabels: (chart) => {
+                        const data = chart.data;
+                        if (data.labels.length && data.datasets.length) {
+                            return data.labels.map((label, i) => {
+                                const meta = chart.getDatasetMeta(0);
+                                const style = meta.controller.getStyle(i);
+                                const value = data.datasets[0].data[i];
+                                const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                const percentage = ((value / total) * 100).toFixed(1) + '%';
+
+                                return {
+                                    text: `${label} - ${percentage}`,
+                                    fillStyle: style.backgroundColor,
+                                    strokeStyle: style.borderColor,
+                                    lineWidth: style.borderWidth,
+                                    hidden: isNaN(data.datasets[0].data[i]) || meta.data[i].hidden,
+                                    index: i
+                                };
+                            });
+                        }
+                        return [];
+                    }
                 }
             }
         }
