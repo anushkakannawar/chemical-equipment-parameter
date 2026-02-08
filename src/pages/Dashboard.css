@@ -1,0 +1,105 @@
+/* Dashboard Clean Lab Styles - Lyna Palette */
+:root {
+    --dashboard-bg: #FFFDEE;
+    /* Cream */
+    --header-bg: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --text-primary: #06231D;
+    /* Dark Green */
+    --text-secondary: #076653;
+    /* Deep Green */
+    --accent-teal: #076653;
+    /* Deep Green */
+    --accent-teal-hover: #0C342C;
+    /* Forest Green */
+    --accent-lime: #E3EF26;
+    /* Lime */
+    --border-radius: 16px;
+    --shadow-float: 0 10px 15px -3px rgba(7, 102, 83, 0.1), 0 4px 6px -2px rgba(7, 102, 83, 0.05);
+}
+
+.clean-layout {
+    background-color: var(--dashboard-bg) !important;
+    min-height: 100vh;
+}
+
+.clean-header {
+    background: var(--header-bg) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid #E2E8F0;
+    padding: 0 24px !important;
+    z-index: 10;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+.header-title {
+    color: var(--accent-teal) !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    letter-spacing: -0.5px;
+}
+
+.site-layout-content {
+    padding: 24px 0;
+}
+
+/* Override Ant D Card */
+.ant-card {
+    background: var(--card-bg) !important;
+    border-radius: var(--border-radius) !important;
+    border: none !important;
+    box-shadow: var(--shadow-float) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ant-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+.ant-card-head {
+    border-bottom: 1px solid #F1F5F9 !important;
+    font-family: 'Montserrat', sans-serif !important;
+    color: var(--text-primary) !important;
+    font-weight: 600 !important;
+}
+
+.ant-card-body {
+    padding: 24px !important;
+}
+
+/* Primary Button Override */
+.ant-btn-primary {
+    background-color: var(--accent-teal) !important;
+    border-color: var(--accent-teal) !important;
+    box-shadow: 0 4px 6px -1px rgba(13, 148, 136, 0.3);
+    font-weight: 500;
+}
+
+.ant-btn-primary:hover {
+    background-color: var(--accent-teal-hover) !important;
+    border-color: var(--accent-teal-hover) !important;
+}
+
+/* Footer */
+.ant-layout-footer {
+    background: transparent !important;
+    color: var(--text-secondary) !important;
+}
+
+/* Typography Overrides for consistent look */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-primary) !important;
+}
+
+.ant-typography {
+    color: var(--text-secondary);
+}
