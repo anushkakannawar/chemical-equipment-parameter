@@ -180,37 +180,37 @@ def create_bar_chart(avg_flow, avg_press, avg_temp):
     ax2.set_facecolor('#FFFDEE')
 
     # Subplot 1: Flowrate & Temperature
-    params1 = ['Flowrate', 'Temperature']
+    params1 = ['Flowrate\n(L/min)', 'Temperature\n(°C)']
     values1 = [avg_flow, avg_temp]
     bars1 = ax1.bar(params1, values1, color='#076653', alpha=0.9, width=0.6)
     
     ax1.set_title('Flow & Temp Averages', color="#076653", fontsize=10, fontweight='bold')
     ax1.grid(axis='y', linestyle='--', alpha=0.3)
-    ax1.tick_params(axis='x', rotation=0, colors='#0C342C')
-    ax1.tick_params(axis='y', colors='#0C342C')
+    ax1.tick_params(axis='x', rotation=0, colors='#0C342C', labelsize=8)
+    ax1.tick_params(axis='y', colors='#0C342C', labelsize=8)
     
     # Add values on top
     for bar in bars1:
         height = bar.get_height()
         ax1.text(bar.get_x() + bar.get_width()/2., height,
                 f'{height:.1f}',
-                ha='center', va='bottom', fontsize=8, color='#06231D')
+                ha='center', va='bottom', fontsize=8, color='#06231D', fontweight='bold')
 
     # Subplot 2: Pressure (separate scale)
-    params2 = ['Pressure']
+    params2 = ['Pressure\n(Bar)']
     values2 = [avg_press]
     bars2 = ax2.bar(params2, values2, color='#E3EF26', alpha=0.9, width=0.6)
     
     ax2.set_title('Avg Pressure', color="#076653", fontsize=10, fontweight='bold')
     ax2.grid(axis='y', linestyle='--', alpha=0.3)
-    ax2.tick_params(axis='x', colors='#0C342C')
-    ax2.tick_params(axis='y', colors='#0C342C')
+    ax2.tick_params(axis='x', colors='#0C342C', labelsize=8)
+    ax2.tick_params(axis='y', colors='#0C342C', labelsize=8)
 
     for bar in bars2:
         height = bar.get_height()
         ax2.text(bar.get_x() + bar.get_width()/2., height,
                 f'{height:.1f}',
-                ha='center', va='bottom', fontsize=8, color='#06231D')
+                ha='center', va='bottom', fontsize=8, color='#06231D', fontweight='bold')
 
     # Global styling
     for ax in [ax1, ax2]:

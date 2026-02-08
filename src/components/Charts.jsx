@@ -61,7 +61,7 @@ const Charts = ({ summary }) => {
 
     // 2. Equipment Parameter Averages (Bar Chart)
     const averagesData = {
-        labels: ['Flowrate', 'Pressure', 'Temperature'],
+        labels: ['Flowrate (L/min)', 'Pressure (Bar)', 'Temperature (°C)'],
         datasets: [
             {
                 label: 'Average Value',
@@ -89,6 +89,20 @@ const Charts = ({ summary }) => {
             },
             title: {
                 display: false,
+            },
+            tooltip: {
+                callbacks: {
+                    label: function (context) {
+                        let label = context.dataset.label || '';
+                        if (label) {
+                            label += ': ';
+                        }
+                        if (context.parsed.y !== null) {
+                            label += context.parsed.y.toFixed(2);
+                        }
+                        return label;
+                    }
+                }
             }
         },
         scales: {
@@ -101,7 +115,8 @@ const Charts = ({ summary }) => {
                     font: {
                         family: "'Inter', sans-serif",
                     }
-                }
+                },
+                beginAtZero: true
             },
             x: {
                 grid: {
@@ -113,6 +128,28 @@ const Charts = ({ summary }) => {
                         family: "'Inter', sans-serif",
                     }
                 }
+            }
+        },
+        // Custom animation to draw values on top of bars
+        animation: {
+            onComplete: function (animation) {
+                const chart = animation.chart;
+                const ctx = chart.ctx;
+
+                ctx.font = "bold 12px 'Inter', sans-serif";
+                ctx.fillStyle = '#06231D'; // Dark text
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'bottom';
+
+                chart.data.datasets.forEach((dataset, i) => {
+                    const meta = chart.getDatasetMeta(i);
+                    meta.data.forEach((bar, index) => {
+                        const value = dataset.data[index];
+                        if (value !== null && value !== undefined) {
+                            ctx.fillText(value.toFixed(1), bar.x, bar.y - 5);
+                        }
+                    });
+                });
             }
         }
     };
