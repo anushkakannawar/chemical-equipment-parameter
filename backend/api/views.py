@@ -159,7 +159,7 @@ def create_pie_chart(data):
                                       textprops={'color': "#06231D", 'fontsize': 10})
     
     ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-    plt.title("Equipment Type Distribution", color="#076653", fontsize=12, fontweight='bold', pad=20)
+    plt.title("Equipment Type Distribution", color="#076653", fontsize=12, fontweight='bold', pad=12)
     
     buf = io.BytesIO()
     plt.savefig(buf, format='png', bbox_inches='tight', dpi=100, facecolor='#FFFDEE')
@@ -184,7 +184,7 @@ def create_bar_chart(avg_flow, avg_press, avg_temp):
     values1 = [avg_flow, avg_temp]
     bars1 = ax1.bar(params1, values1, color='#076653', alpha=0.9, width=0.6)
     
-    ax1.set_title('Flow & Temp Averages', color="#076653", fontsize=10, fontweight='bold')
+    ax1.set_title('Flow & Temp Averages', color="#076653", fontsize=10, fontweight='bold', pad=12)
     ax1.grid(axis='y', linestyle='--', alpha=0.3)
     ax1.tick_params(axis='x', rotation=0, colors='#0C342C', labelsize=8)
     ax1.tick_params(axis='y', colors='#0C342C', labelsize=8)
@@ -201,7 +201,7 @@ def create_bar_chart(avg_flow, avg_press, avg_temp):
     values2 = [avg_press]
     bars2 = ax2.bar(params2, values2, color='#E3EF26', alpha=0.9, width=0.6)
     
-    ax2.set_title('Avg Pressure', color="#076653", fontsize=10, fontweight='bold')
+    ax2.set_title('Avg Pressure', color="#076653", fontsize=10, fontweight='bold', pad=12)
     ax2.grid(axis='y', linestyle='--', alpha=0.3)
     ax2.tick_params(axis='x', colors='#0C342C', labelsize=8)
     ax2.tick_params(axis='y', colors='#0C342C', labelsize=8)
