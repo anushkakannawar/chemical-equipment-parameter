@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base URL configuration
-const API_BASE_URL = '/api';
+const API_BASE_URL = 'https://chemical-equipment-parameter-zw76.onrender.com/api';
 
 // Create axios instance
 const api = axios.create({
