@@ -11,12 +11,14 @@ const api = axios.create({
     },
 });
 
-// Add interceptor to include token
+// FIXED Interceptor (Do NOT send token for login & register)
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
-    if (token) {
+
+    if (token && !config.url.includes("login") && !config.url.includes("register")) {
         config.headers.Authorization = `Token ${token}`;
     }
+
     return config;
 }, (error) => Promise.reject(error));
 
@@ -28,7 +30,6 @@ api.interceptors.request.use((config) => {
  */
 export const login = async (username, password) => {
     try {
-        // Use relative path to go through Vite proxy
         const response = await api.post('/login/', { username, password });
         const { token } = response.data;
         localStorage.setItem('token', token);
@@ -116,7 +117,7 @@ export const getHistory = async () => {
 export const downloadReport = async (id) => {
     try {
         const response = await api.get(`/report/${id}/`, {
-            responseType: 'blob', // Important for file download
+            responseType: 'blob',
         });
         return response.data;
     } catch (error) {
