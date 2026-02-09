@@ -8,9 +8,16 @@ SECRET_KEY = 'django-insecure-replace-me-in-production'
 
 DEBUG = True
 
-ALLOWED_HOSTS = [ "localhost:5173",
-    "127.0.0.1:5173",
-    "chemical-equipment-parameter-zw76.onrender.com"]
+ALLOWED_HOSTS = [
+    "chemical-equipment-parameter-zw76.onrender.com",
+    ".onrender.com",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://chemical-equipment-parameter-zw76.onrender.com",
+]
+
+
 
 # Application definition
 
