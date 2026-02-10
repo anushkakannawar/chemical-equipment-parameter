@@ -11,6 +11,15 @@ const api = axios.create({
     },
 });
 
+// added this line 
+const cors = require("cors");
+
+app.use(cors({
+  origin: "https://chemicalparametervisualizer.netlify.app",
+  credentials: true
+}));
+//
+
 // FIXED Interceptor (Do NOT send token for login & register)
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
